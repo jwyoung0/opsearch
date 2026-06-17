@@ -1,3 +1,5 @@
+from write import print_reviews_by_id
+
 def boolean_search(postings, query):
     ### Conjunctive Boolean Search
 

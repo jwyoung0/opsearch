@@ -1,6 +1,8 @@
-from db import load_reviews, print_reviews_by_id    
+from db import load_reviews  
 from indexing import build_postings_list
+from write import print_reviews_by_id
 from search.boolean import boolean_search
+
 
 
 def main():
@@ -12,7 +14,8 @@ def main():
 
     matching_review_ids = boolean_search(postings, query1)
     
-    print_reviews_by_id(matching_review_ids)
+    path = "src\\search\\boolean_results.txt"
+    print_reviews_by_id(reviews, matching_review_ids, path)
 
 
 
