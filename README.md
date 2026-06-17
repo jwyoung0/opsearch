@@ -1,3 +1,5 @@
-About:
-    This is an opinion search engine on a database of Amazon Reviews.
+# **Opinion Search Project**
 
+- An opinion search engine on a database of Amazon Reviews.
+
+## Installation
