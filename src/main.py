@@ -1,7 +1,4 @@
-import os
-
-import mysql.connector
-from dotenv import load_dotenv
+from db import load_reviews
 
 
 def build_postings_list(rows):
@@ -63,37 +60,15 @@ def print_reviews_by_id(cursor, review_ids):
         print("No reviews found.")
 
 def main():
+    reviews = load_reviews()
 
-    load_dotenv()
-
-    connection = mysql.connector.connect(
-        host=os.getenv("MYSQL_HOST"),
-        port=int(os.getenv("MYSQL_PORT", "3306")),
-        user=os.getenv("MYSQL_USER"),
-        password=os.getenv("MYSQL_PASSWORD"),
-        database=os.getenv("MYSQL_DATABASE"),
-    )
-
-    cursor = connection.cursor(dictionary=True)
-
-
-    # LIMIT is for development stage. Should be removed for full run.
-    cursor.execute("""
-        SELECT review_id, review_text
-        FROM reviews_segment
-        ORDER BY review_id
-        LIMIT 5000                   
-    """)
-
-    rows = cursor.fetchall()
-    postings = build_postings_list(rows)
+    postings = build_postings_list()
 
     matching_review_ids = boolean_search_and(postings, "happy", "phone")
     
-    print_reviews_by_id(cursor, matching_review_ids)
+    print_reviews_by_id(reviews, matching_review_ids)
 
-    cursor.close()
-    connection.close()
+
 
 if __name__ == "__main__":
     main()
