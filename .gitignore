@@ -1,3 +1,5 @@
 .env
 report*
 !report.pdf
+__pycache__/
+*.pyc
