@@ -3,3 +3,4 @@ report*
 !report.pdf
 __pycache__/
 *.pyc
+boolean_results.txt
