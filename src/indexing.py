@@ -1,3 +1,5 @@
+#Builds inverted index
+
 from preprocessing import build_stopwords_list
 
 def build_postings_list(rows):
@@ -17,6 +19,6 @@ def build_postings_list(rows):
                 if token not in postings:
                     postings[token] = []
 
-                postings[token].append(review_id)
-
+                postings[token].append(review_id)    
+ 
     return postings

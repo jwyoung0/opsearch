@@ -1,3 +1,5 @@
+#Write search results to file
+
 def print_reviews_by_id(all_reviews, matching_review_ids, path):
     
     if not matching_review_ids:

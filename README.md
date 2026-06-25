@@ -1,6 +1,6 @@
 # **Opinion Search Project**
 
-  An opinion search engine on a database of Amazon Reviews.
+  An opinion search engine on a database of Amazon reviews.
 
 ## Features
 Loads reviews from MySQL\
@@ -15,17 +15,19 @@ mysql-connector-python\
 python-dotenv
 
 ```
-pip install mysql-connector-python python-dotenv
+pip install -r requirements.txt
 ```
 
 ## Environment Setup
 The project requires a .env file in the project root with:
 
-MYSQL_HOST=localhost\
-MYSQL_PORT=3306\
-MYSQL_USER=your_username\
-MYSQL_PASSWORD=your_password\
+```
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=your_username
+MYSQL_PASSWORD=your_password
 MYSQL_DATABASE=amazon_db_software
+```
 
 This .env file should not be committed, and it is already in .gitignore
 
