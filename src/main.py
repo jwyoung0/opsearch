@@ -15,11 +15,11 @@ def main():
     #     print(key)
     #     print(postings[key])
 
-    query1 = ["phone screen", "issues"]
-    query2 = ["wifi signal", "weak"]
-    query3 = ["mouse button", "great"]
-    query4 = ["battery life", "long"]
-    query5 = ["printer ink", "expensive"]
+    query1 = ["audio quality", "poor"]
+    query2 = ["wifi signal", "strong"]
+    query3 = ["mouse button", "click problem"]
+    query4 = ["gps map", "useful"]
+    query5 = ["image quality", "sharp"]
 
     query_list = (query1, query2, query3, query4, query5)
 

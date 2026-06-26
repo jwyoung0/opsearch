@@ -1,15 +1,7 @@
 #Boolean Search logic
 
-def boolean_search_and(postings, query, previous_result):
+def boolean_search_and(postings1, postings2):
     ### Conjunctive Boolean Search
-
-    [word1, word2] = query
-
-    if previous_result == None:
-        postings1 = postings.get(word1, [])
-    else:
-        postings1 = previous_result
-    postings2 = postings.get(word2, [])
 
     index1 = 0
     index2 = 0
@@ -28,16 +20,8 @@ def boolean_search_and(postings, query, previous_result):
 
     return result
 
-def boolean_search_or(postings, query, previous_result):
+def boolean_search_or(postings1, postings2):
     ### Disjunctive Boolean Search
-
-    [word1, word2] = query
-
-    if previous_result == None:
-        postings1 = postings.get(word1, [])
-    else:
-        postings1 = previous_result
-    postings2 = postings.get(word2, [])
 
     index1 = 0
     index2 = 0
@@ -59,15 +43,33 @@ def boolean_search_or(postings, query, previous_result):
     return result
 
 def boolean_opsearch(postings, query):
+    # Hard coded for OR AND OR. Time permitting, will generalize.
 
     [aspect, opinion] = query
+    
+    # Hard coded for 2 words per aspect. Time permitting, will generalize
     tokenized_aspect = aspect.lower().split()
-    tokenized_query = [tokenized_aspect, opinion]
+    [aspect1, aspect2] = tokenized_aspect
+    aspect1_list = postings.get(aspect1, [])
+    aspect2_list = postings.get(aspect2, [])
 
-    boolean_aspect = boolean_search_or(postings, tokenized_aspect, None)
-  
-    boolean_query_result = boolean_search_and(postings, tokenized_query, boolean_aspect)
-   
-    return boolean_query_result
+    # Hard coded for 1 or 2 words per opinion. Time permitting, will generalize.
+    tokenized_opinion = opinion.lower().split()
+    if len(tokenized_opinion) == 2:
+        [opinion1, opinion2] = tokenized_opinion
+        opinion1_list = postings.get(opinion1, [])
+        opinion2_list = postings.get(opinion2, [])
+    else:
+        opinion_list = postings.get(opinion, [])
+    
+    boolean_aspect = boolean_search_or(aspect1_list, aspect2_list)
+    if len(tokenized_opinion) == 2:
+        boolean_opinion = boolean_search_or(opinion1_list, opinion2_list)
+    else:
+        boolean_opinion = opinion_list
+
+    boolean_search_result = boolean_search_and(boolean_aspect, boolean_opinion)
+
+    return boolean_search_result
 
 
