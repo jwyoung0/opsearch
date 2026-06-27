@@ -1,5 +1,5 @@
 from db import load_reviews  
-from indexing import build_postings_list
+from indexing import build_postings_list, build_postings_list2
 from output_writing import print_reviews_by_id
 from search.boolean import boolean_opsearch
 from pathlib import Path
@@ -9,11 +9,17 @@ from pathlib import Path
 def main():
     reviews = load_reviews()
 
-    postings = build_postings_list(reviews)
+    #postings = build_postings_list(reviews)
+    postings = build_postings_list2(reviews)
+    # frequency_cutoff_index(postings, 5)
 
     # for key in list(postings.keys())[:10]:
     #     print(key)
     #     print(postings[key])
+
+    for key in list(postings.keys())[:20]:
+        print(key, len(postings[key]))
+  
 
     query1 = ["audio quality", "poor"]
     query2 = ["wifi signal", "strong"]
